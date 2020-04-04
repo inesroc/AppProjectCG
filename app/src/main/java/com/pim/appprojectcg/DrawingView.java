@@ -1,6 +1,7 @@
 package com.pim.appprojectcg;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -21,8 +22,15 @@ public class DrawingView extends View {
     // Store circles to draw each time the user touches down
     private Path path = new Path();
 
+
+    //////////////
+    private Bitmap mBitmap;
+    private Paint   mBitmapPaint;
+
     public DrawingView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        mBitmapPaint = new Paint(Paint.DITHER_FLAG);
+        mBitmap = Bitmap.createBitmap(200, 200, Bitmap.Config.ARGB_8888);
         setFocusable(true);
         setFocusableInTouchMode(true);
         setupPaint();
@@ -31,6 +39,7 @@ public class DrawingView extends View {
     // Draw each circle onto the view
     @Override
     protected void onDraw(Canvas canvas) {
+        canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
         canvas.drawPath(path, drawPaint);
     }
 
