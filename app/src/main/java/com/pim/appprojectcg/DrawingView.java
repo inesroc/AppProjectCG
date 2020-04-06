@@ -9,6 +9,7 @@ import android.graphics.Path;
 import android.graphics.Point;
 import android.os.Environment;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -43,6 +44,13 @@ public class DrawingView extends View {
         mPaint.setStrokeCap(Paint.Cap.ROUND);
         mPaint.setStrokeWidth(9);
 
+    }
+
+    public void setStrokeColor(String colorStroke){
+        Log.d("MYTAG",colorStroke);
+        int i = Color.parseColor(colorStroke);
+        Log.d("MYTAG","int color "+i);
+        mPaint.setColor(Color.parseColor(colorStroke));
     }
 
 

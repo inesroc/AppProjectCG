@@ -1,0 +1,714 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/GridLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="*">
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageButton
+            android:id="@+id/hexffccff"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#ffccff" />
+
+        <ImageButton
+            android:id="@+id/hexff99ff"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#ff99ff"
+            android:padding="4dp"/>
+
+        <ImageButton
+            android:id="@+id/hexcc66cc"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#cc66cc " />
+
+        <ImageButton
+            android:id="@+id/hexcc33cc"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#cc33cc" />
+
+        <ImageButton
+            android:id="@+id/hex993399"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#993399"
+            android:padding="4dp"/>
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageButton
+            android:id="@+id/hexccccff"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#ccccff"
+            android:padding="4dp"/>
+
+        <ImageButton
+            android:id="@+id/hex9999ff"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#9999ff"
+            android:padding="4dp"/>
+
+        <ImageButton
+            android:id="@+id/hex6666cc"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#6666cc" />
+
+        <ImageButton
+            android:id="@+id/hex6633ff"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#6633ff" />
+
+        <ImageButton
+            android:id="@+id/hex6600cc"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#6600cc"
+            android:padding="4dp"/>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageButton
+            android:id="@+id/hexccffff"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#ccffff"
+            android:padding="4dp"/>
+
+        <ImageButton
+            android:id="@+id/hex66ffff"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#66ffff"
+            android:padding="4dp"/>
+
+        <ImageButton
+            android:id="@+id/hex33ccff"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#33ccff" />
+
+        <ImageButton
+            android:id="@+id/hex3366ff"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#3366ff " />
+
+        <ImageButton
+            android:id="@+id/hex3333ff"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#3333ff"
+            android:padding="4dp"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageButton
+            android:id="@+id/hex99ffff"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#99ffff "
+            android:padding="4dp"/>
+
+        <ImageButton
+            android:id="@+id/hex33ffff"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#33ffff"
+            android:padding="4dp"/>
+
+        <ImageButton
+            android:id="@+id/hex66cccc"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#66cccc" />
+
+        <ImageButton
+            android:id="@+id/hex00cccc"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#00cccc" />
+
+        <ImageButton
+            android:id="@+id/hex339999"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#339999"
+            android:padding="4dp"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageButton
+            android:id="@+id/hex99ff99"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#99ff99"
+            android:padding="4dp"/>
+
+        <ImageButton
+            android:id="@+id/hex66ff99"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#66ff99"
+            android:padding="4dp"/>
+
+        <ImageButton
+            android:id="@+id/hex33ff33"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#33ff33" />
+
+        <ImageButton
+            android:id="@+id/hex33cc00"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#33cc00" />
+
+        <ImageButton
+            android:id="@+id/hex009900"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#009900"
+            android:padding="4dp"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageButton
+            android:id="@+id/hexffffcc"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#ffffcc"
+            android:padding="4dp"/>
+
+        <ImageButton
+            android:id="@+id/hexffff33"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#ffff33"
+            android:padding="4dp"/>
+
+        <ImageButton
+            android:id="@+id/hexffff00"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#ffff00" />
+
+        <ImageButton
+            android:id="@+id/hexffcc00"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#ffcc00" />
+
+        <ImageButton
+            android:id="@+id/hex999900"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#999900"
+            android:padding="4dp"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageButton
+            android:id="@+id/hexffff99"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#ffff99"
+            android:padding="4dp"/>
+
+        <ImageButton
+            android:id="@+id/hexffff66"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#ffff66"
+            android:padding="4dp"/>
+
+        <ImageButton
+            android:id="@+id/hexffcc66"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#ffcc66" />
+
+        <ImageButton
+            android:id="@+id/hexffcc33"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#ffcc33" />
+
+        <ImageButton
+            android:id="@+id/hexcc9933"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#cc9933"
+            android:padding="4dp"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageButton
+            android:id="@+id/hexffcc99"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#ffcc99"
+            android:padding="4dp"/>
+
+        <ImageButton
+            android:id="@+id/hexff9966"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#ff9966"
+            android:padding="4dp"/>
+
+        <ImageButton
+            android:id="@+id/hexff9900"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#ff9900" />
+
+        <ImageButton
+            android:id="@+id/hexff6600"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#ff6600" />
+
+        <ImageButton
+            android:id="@+id/hexcc6600"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#cc6600"
+            android:padding="4dp"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageButton
+            android:id="@+id/hexffcccc"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#ffcccc"
+            android:padding="4dp"/>
+
+        <ImageButton
+            android:id="@+id/hexff6666"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#ff6666"
+            android:padding="4dp"/>
+
+        <ImageButton
+            android:id="@+id/hexff0000"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#ff0000" />
+
+        <ImageButton
+            android:id="@+id/hexcc0000"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#cc0000" />
+
+        <ImageButton
+            android:id="@+id/hex990000"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#990000"
+            android:padding="4dp"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageButton
+            android:id="@+id/hexffffff"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#ffffff"
+            android:padding="4dp"/>
+
+        <ImageButton
+            android:id="@+id/hexc0c0c0"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#c0c0c0"
+            android:padding="4dp"/>
+
+        <ImageButton
+            android:id="@+id/hex666666"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#666666"
+            />
+
+        <ImageButton
+            android:id="@+id/hex3b3b3b"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#3b3b3b" />
+
+        <ImageButton
+            android:id="@+id/hex000000"
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="clickedColor"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/color_picker_shape_foreground"
+            android:tint="#000000"
+            android:padding="4dp"/>
+    </TableRow>
+
+</TableLayout>

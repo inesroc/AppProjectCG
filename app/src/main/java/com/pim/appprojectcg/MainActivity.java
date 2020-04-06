@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         int PERMISSION_ALL = 1;
         String[] PERMISSIONS = {
-                android.Manifest.permission.READ_EXTERNAL_STORAGE,
                 android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 android.Manifest.permission.CAMERA
         };
@@ -44,8 +43,11 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
         }
         else{
-            Intent myIntent = new Intent(MainActivity.this, DrawActivity.class);
-            MainActivity.this.startActivity(myIntent);
+            if (hasPermissions(this, PERMISSIONS)) {
+                Intent myIntent = new Intent(MainActivity.this, DrawActivity.class);
+                MainActivity.this.startActivity(myIntent);
+            }
+
         }
     }
     public static boolean hasPermissions(Context context, String... permissions) {

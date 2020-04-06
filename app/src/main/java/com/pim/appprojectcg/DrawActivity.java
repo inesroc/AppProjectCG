@@ -15,7 +15,11 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -24,6 +28,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Objects;
 
 // https://stackoverflow.com/questions/15762905/how-can-i-display-a-list-view-in-an-android-alert-dialog
 
@@ -32,10 +37,17 @@ public class DrawActivity extends AppCompatActivity {
 
     DrawingView drawView;
     Bitmap b;
+    String colorStroke;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        Objects.requireNonNull(getSupportActionBar()).hide(); // hide the title bar
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
+
         setContentView(R.layout.activity_draw);
 
         drawView = findViewById(R.id.simpleDrawingView1);
@@ -43,11 +55,79 @@ public class DrawActivity extends AppCompatActivity {
         drawView.setDrawingCacheEnabled(true);
         b = drawView.getDrawingCache();
 
+
+        // create an alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Name");
+
+        // set the custom layout
+        final View customLayout = getLayoutInflater().inflate(R.layout.matrix_colors, null);
+        builder.setView(customLayout);
+
+        // add a button
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                drawView.setStrokeColor(colorStroke);
+                // send data from the AlertDialog to the Activity
+                sendDialogDataToActivity("click".toString());
+            }
+        });
+        // create and show the alert dialog
+        final AlertDialog dialog = builder.create();
+
+
+
+/*
+        // https://stackoverflow.com/questions/41442280/how-to-wrap-an-alertdialog-around-a-gridlayout
         // setup the alert builder
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Colors");
 
-        // add a list
+        LayoutInflater inflater = this.getLayoutInflater();;
+        final View addViewImg = inflater.inflate(R.layout.matrix_colors, null);
+        builder.setView(addViewImg);
+        final AlertDialog alertDialog = builder.create();
+        final Window window = alertDialog.getWindow();
+
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch(which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        // User clicked the Yes button
+                        tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 35);
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        // User clicked the No button
+                        break;
+                }
+            }
+        };
+
+
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+
+            @Override
+            public void onShow(DialogInterface dialog) {
+
+            }
+
+                    public void onClick(View view) {
+                        // DO Do something
+                        switch(view.getId()) {
+                            case R.id.b1:
+                                Toast.makeText(getApplicationContext(),"B1",Toast.LENGTH_SHORT).show();
+                                break;
+                            case R.id.b2:
+                                Toast.makeText(getApplicationContext(),"B2",Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+                    }
+                });
+*/
+        /*// add a list
         String[] animals = {"horse", "cow", "camel", "sheep", "goat"};
         builder.setItems(animals,new DialogInterface.OnClickListener() {
             @Override
@@ -60,22 +140,25 @@ public class DrawActivity extends AppCompatActivity {
                     case 4: // goat
                 }
             }
-        });
+        });*/
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////
 
         Button btnChangeColor = findViewById(R.id.btnChangeColor);
         btnChangeColor.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                dialog.show();
 
                 // create and show the alert dialog
-                AlertDialog dialog = builder.create();
-                dialog.show();
+               // AlertDialog dialog = builder.create();
+               // dialog.show();
+                //window.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+               // alertDialog.show();
 
 
             }});
 
-
-
+            //////////////////////////////////////////////////////
 
 
         // https://stackoverflow.com/questions/18676311/android-app-how-to-save-a-bitmap-drawing-on-canvas-as-image-check-code/18676403
@@ -138,6 +221,7 @@ public class DrawActivity extends AppCompatActivity {
                         System.out.println("NULL bitmap save\n");
                     }
                     save.compress(Bitmap.CompressFormat.PNG, 100, ostream);
+                    Toast.makeText(getApplicationContext(), "Image Saved", Toast.LENGTH_SHORT).show();
                     //bitmap.compress(Bitmap.CompressFormat.PNG, 100, ostream);
                     //ostream.flush();
                     //ostream.close();
@@ -150,6 +234,20 @@ public class DrawActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    // do something with the data coming from the AlertDialog
+    private void sendDialogDataToActivity(String data) {
+        Toast.makeText(this, data, Toast.LENGTH_SHORT).show();
+    }
+
+
+    public void clickedColor(View v){
+        String n =  v.getResources().getResourceEntryName(v.getId());
+        n = n.replace("hex","#");
+        v.setBackgroundResource(R.drawable.border);
+        colorStroke = n;
+        Toast.makeText(getApplicationContext(), n, Toast.LENGTH_SHORT).show();
     }
 
 }
