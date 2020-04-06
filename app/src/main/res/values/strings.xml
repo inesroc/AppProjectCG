@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AppProjectCG</string>
+    <string name="btnChangeColorName">Colors</string>
+    <string name="btnSaveName">Save</string>
 </resources>

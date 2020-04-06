@@ -2,7 +2,13 @@ package com.pim.appprojectcg;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +25,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
+// https://stackoverflow.com/questions/15762905/how-can-i-display-a-list-view-in-an-android-alert-dialog
+
+
 public class DrawActivity extends AppCompatActivity {
 
     DrawingView drawView;
@@ -34,105 +43,113 @@ public class DrawActivity extends AppCompatActivity {
         drawView.setDrawingCacheEnabled(true);
         b = drawView.getDrawingCache();
 
+        // setup the alert builder
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Colors");
+
+        // add a list
+        String[] animals = {"horse", "cow", "camel", "sheep", "goat"};
+        builder.setItems(animals,new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick (DialogInterface dialog,int which){
+                switch (which) {
+                    case 0: // horse
+                    case 1: // cow
+                    case 2: // camel
+                    case 3: // sheep
+                    case 4: // goat
+                }
+            }
+        });
+
+
+        Button btnChangeColor = findViewById(R.id.btnChangeColor);
+        btnChangeColor.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                // create and show the alert dialog
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+
+            }});
+
+
+
+
+
+        // https://stackoverflow.com/questions/18676311/android-app-how-to-save-a-bitmap-drawing-on-canvas-as-image-check-code/18676403
         Button bt = findViewById(R.id.button);
         bt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //new BitmapWorkerTask();
-
-                // create directory if not exist
-                final File dir = new File(Environment.getExternalStorageDirectory() + File.separator + getResources().getString(R.string.app_name));
-                Log.d("MYTAG","File "+dir);
-                if (!dir.exists()) {
-                    Log.d("MYTAG","Make dir");
-                    dir.mkdirs();
+                File folder = new File(Environment.getExternalStorageDirectory().toString());
+                boolean success = false;
+                if (!folder.exists()) {
+                    success = folder.mkdirs();
                 }
 
-                File output = new File(dir, "canvasdemo.jpg");
-                OutputStream os;
+                System.out.println(success + "folder");
 
+                File file = new File(Environment.getExternalStorageDirectory().toString() + "/sample.png");
+
+                if (!file.exists()) {
+                    try {
+                        success = file.createNewFile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                System.out.println(success + "file");
+
+
+                FileOutputStream ostream = null;
                 try {
-                    os = new FileOutputStream(output);
-                    b.compress(Bitmap.CompressFormat.JPEG, 100, os);
-                    os.flush();
-                    os.close();
+                    ostream = new FileOutputStream(file);
 
-                    final Handler handler = new Handler();
+                    System.out.println(ostream);
+                    View targetView = drawView;
 
-                    //this code will scan the image so that it will appear in your gallery when you open next time
-                    MediaScannerConnection.scanFile(DrawActivity.this, new String[]{output.toString()}, null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
-                                public void onScanCompleted(String path, Uri uri) {
-                                    handler.post(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            //Toast.makeText(CanvasDemoActivity.this, CanvasDemoActivity.this.getResources().getString(R.string.str_save_image_text) + dir.getPath(), Toast.LENGTH_LONG).show();
-                                            Toast.makeText(DrawActivity.this, "myDrawing" + dir.getPath(), Toast.LENGTH_LONG).show();
-                                        }
-                                    });
-                                }
-                            }
-                    );
-                } catch (FileNotFoundException fnfe) {
-                    fnfe.printStackTrace();
-                } catch (IOException ioe) {
-                    ioe.printStackTrace();
+                    // myDrawView.setDrawingCacheEnabled(true);
+                    //   Bitmap save = Bitmap.createBitmap(myDrawView.getDrawingCache());
+                    //   myDrawView.setDrawingCacheEnabled(false);
+                    // copy this bitmap otherwise distroying the cache will destroy
+                    // the bitmap for the referencing drawable and you'll not
+                    // get the captured view
+                    //   Bitmap save = b1.copy(Bitmap.Config.ARGB_8888, false);
+                    //BitmapDrawable d = new BitmapDrawable(b);
+                    //canvasView.setBackgroundDrawable(d);
+                    //   myDrawView.destroyDrawingCache();
+                    // Bitmap save = myDrawView.getBitmapFromMemCache("0");
+                    // myDrawView.setDrawingCacheEnabled(true);
+                    //Bitmap save = myDrawView.getDrawingCache(false);
+                    Bitmap well = drawView.getBitmap();
+                    Bitmap save = Bitmap.createBitmap(320, 480, Bitmap.Config.ARGB_8888);
+                    Paint paint = new Paint();
+                    paint.setColor(Color.WHITE);
+                    Canvas now = new Canvas(save);
+                    now.drawRect(new Rect(0, 0, 320, 480), paint);
+                    now.drawBitmap(well, new Rect(0, 0, well.getWidth(), well.getHeight()), new Rect(0, 0, 320, 480), null);
+
+                    // Canvas now = new Canvas(save);
+                    //myDrawView.layout(0, 0, 100, 100);
+                    //myDrawView.draw(now);
+                    if (save == null) {
+                        System.out.println("NULL bitmap save\n");
+                    }
+                    save.compress(Bitmap.CompressFormat.PNG, 100, ostream);
+                    //bitmap.compress(Bitmap.CompressFormat.PNG, 100, ostream);
+                    //ostream.flush();
+                    //ostream.close();
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Null error", Toast.LENGTH_SHORT).show();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "File error", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-
-    /*private class BitmapWorkerTask extends AsyncTask<Integer, Void, Bitmap> {
-        // Decode image in background.
-        @Override
-        protected Bitmap doInBackground(Integer... params) {
-            FileOutputStream fos = null;
-              try {
-                  fos = new FileOutputStream(Environment.getExternalStorageDirectory());
-              } catch (FileNotFoundException e) {
-                  e.printStackTrace();
-              }
-
-               b.compress(Bitmap.CompressFormat.PNG, 95, fos);
-              return b;
-        }
-
-    }*/
 }
-
-/*//create directory if not exist
-                final File dir = new File(Environment.getExternalStorageDirectory() + File.separator + getResources().getString(R.string.app_name));
-                if (!dir.exists()) {
-                    dir.mkdirs();
-                }
-
-                File output = new File(dir, "canvasdemo.jpg");
-                OutputStream os;
-
-                try {
-                    os = new FileOutputStream(output);
-                    b.compress(Bitmap.CompressFormat.JPEG, 100, os);
-                    os.flush();
-                    os.close();
-
-                    final Handler handler = new Handler();
-
-                    //this code will scan the image so that it will appear in your gallery when you open next time
-                    MediaScannerConnection.scanFile(CanvasDemoActivity.this, new String[]{output.toString()}, null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
-                                public void onScanCompleted(String path, Uri uri) {
-                                    handler.post(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Toast.makeText(CanvasDemoActivity.this, CanvasDemoActivity.this.getResources().getString(R.string.str_save_image_text) + dir.getPath(), Toast.LENGTH_LONG).show();
-                                        }
-                                    });
-                                }
-                            }
-                    );
-                } catch (FileNotFoundException fnfe) {
-                    fnfe.printStackTrace();
-                } catch (IOException ioe) {
-                    ioe.printStackTrace();
-                }
-            }*/

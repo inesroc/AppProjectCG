@@ -7,73 +7,129 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
+import android.os.Environment;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.List;
+
+// https://stackoverflow.com/questions/18676311/android-app-how-to-save-a-bitmap-drawing-on-canvas-as-image-check-code/18676403
 
 public class DrawingView extends View {
 
-    // setup initial color
-    private final int paintColor = Color.BLACK;
-    // defines paint and canvas
-    private Paint drawPaint;
-    // Store circles to draw each time the user touches down
-    private Path path = new Path();
-
-
-    //////////////
-    private Bitmap mBitmap;
+    public Bitmap  mBitmap;
+    public Canvas  mCanvas;
+    private Path    mPath;
     private Paint   mBitmapPaint;
+    private Paint   mPaint;
 
-    public DrawingView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+
+    public DrawingView(Context c, AttributeSet attrs) {
+        super(c, attrs);
+
+        mPath = new Path();
         mBitmapPaint = new Paint(Paint.DITHER_FLAG);
-        mBitmap = Bitmap.createBitmap(200, 200, Bitmap.Config.ARGB_8888);
-        setFocusable(true);
-        setFocusableInTouchMode(true);
-        setupPaint();
+
+        mPaint = new Paint();
+        mPaint.setAntiAlias(true);
+        mPaint.setDither(true);
+        mPaint.setColor(0xFF000000);
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setStrokeJoin(Paint.Join.ROUND);
+        mPaint.setStrokeCap(Paint.Cap.ROUND);
+        mPaint.setStrokeWidth(9);
+
     }
 
-    // Draw each circle onto the view
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        mCanvas = new Canvas(mBitmap);
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
-        canvas.drawPath(path, drawPaint);
+
+        canvas.drawPath(mPath, mPaint);
+
+
     }
 
-    // Get x and y and append them to the path
+    private float mX, mY;
+    private static final float TOUCH_TOLERANCE = 4;
+
+    private void touch_start(float x, float y) {
+        mPath.reset();
+        mPath.moveTo(x, y);
+        mX = x;
+        mY = y;
+    }
+    private void touch_move(float x, float y) {
+        float dx = Math.abs(x - mX);
+        float dy = Math.abs(y - mY);
+        if (dx >= TOUCH_TOLERANCE || dy >= TOUCH_TOLERANCE) {
+            mPath.quadTo(mX, mY, (x + mX)/2, (y + mY)/2);
+            mX = x;
+            mY = y;
+        }
+    }
+    private void touch_up() {
+        mPath.lineTo(mX, mY);
+        // commit the path to our offscreen
+        mCanvas.drawPath(mPath, mPaint);
+        // kill this so we don't double draw
+        mPath.reset();
+    }
+
+    @Override
     public boolean onTouchEvent(MotionEvent event) {
-        float pointX = event.getX();
-        float pointY = event.getY();
-        // Checks for the event that occurs
+        float x = event.getX();
+        float y = event.getY();
+
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                // Starts a new line in the path
-                path.moveTo(pointX, pointY);
+                touch_start(x, y);
+                invalidate();
                 break;
             case MotionEvent.ACTION_MOVE:
-                // Draws line between last point and this point
-                path.lineTo(pointX, pointY);
+                touch_move(x, y);
+                invalidate();
                 break;
-            default:
-                return false;
+            case MotionEvent.ACTION_UP:
+                touch_up();
+                invalidate();
+                break;
         }
-
-        postInvalidate(); // Indicate view should be redrawn
-        return true; // Indicate we've consumed the touch
+        return true;
     }
 
-    // Setup paint with color and stroke styles
-    private void setupPaint() {
-        drawPaint = new Paint();
-        drawPaint.setColor(paintColor);
-        drawPaint.setAntiAlias(true);
-        drawPaint.setStrokeWidth(5);
-        drawPaint.setStyle(Paint.Style.STROKE);
-        drawPaint.setStrokeJoin(Paint.Join.ROUND);
-        drawPaint.setStrokeCap(Paint.Cap.ROUND);
+    public Bitmap getBitmap()
+    {
+        //this.measure(100, 100);
+        //this.layout(0, 0, 100, 100);
+        this.setDrawingCacheEnabled(true);
+        this.buildDrawingCache();
+        Bitmap bmp = Bitmap.createBitmap(this.getDrawingCache());
+        this.setDrawingCacheEnabled(false);
+
+
+        return bmp;
+    }
+
+
+
+    public void clear(){
+        mBitmap.eraseColor(Color.GREEN);
+        invalidate();
+        System.gc();
+
     }
 
 }
