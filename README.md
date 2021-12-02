@@ -4,7 +4,7 @@
 
 ## Snap Creative Challenge
 
-Aplicação para telemóvel/tablet onde crianças podem desenhar monstros, animá-los e atribuir monstros a cada localização diferente que visitam. No final de cada atribuição um pin é marcado num globo juntamente com todos os outros pins que foram colocados nas vezes anteriores. Para visualizar a animação dos monstros e o globo do mundo vai ser usada realidade aumentada (AR).
+Project for the Computer Graphics class (2020). This was part of the SNAP creative challenge where we needed to reimagine the future of storytelling with augmented reality. We wanted to create a Mobile/tablet application where kids can draw monsters/animals, animate them and assign each monsters/animal to different location they visit. At the end of each assignment a pin is marked on a globe along with all the other pins that were placed the previous times. To visualize the animation of the monsters and the world globe, augmented reality (AR) will be used. Unfortunately due to outside circumstances we didn’t were able to complete our objective.
 
 Vídeo da aplicação:
 
